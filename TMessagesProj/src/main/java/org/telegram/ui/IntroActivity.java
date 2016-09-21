@@ -126,6 +126,7 @@ public class IntroActivity extends Activity {
             animator.addState(new int[]{android.R.attr.state_pressed}, ObjectAnimator.ofFloat(startMessagingButton, "translationZ", AndroidUtilities.dp(2), AndroidUtilities.dp(4)).setDuration(200));
             animator.addState(new int[]{}, ObjectAnimator.ofFloat(startMessagingButton, "translationZ", AndroidUtilities.dp(4), AndroidUtilities.dp(2)).setDuration(200));
             startMessagingButton.setStateListAnimator(animator);
+            startMessagingButton.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         }
         topImage1 = (ImageView) findViewById(R.id.icon_image1);
         topImage2 = (ImageView) findViewById(R.id.icon_image2);
