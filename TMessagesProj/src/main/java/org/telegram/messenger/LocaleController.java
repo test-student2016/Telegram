@@ -142,6 +142,7 @@ public class LocaleController {
         addRules(new String[]{"ro", "mo"}, new PluralRules_Romanian());
         addRules(new String[]{"sl"}, new PluralRules_Slovenian());
         addRules(new String[]{"ar"}, new PluralRules_Arabic());
+        addRules(new String[]{"fa"}, new PluralRules_Persian());
         addRules(new String[]{"mk"}, new PluralRules_Macedonian());
         addRules(new String[]{"cy"}, new PluralRules_Welsh());
         addRules(new String[]{"br"}, new PluralRules_Breton());
@@ -157,6 +158,14 @@ public class LocaleController {
         localeInfo.name = "English";
         localeInfo.nameEnglish = "English";
         localeInfo.shortName = "en";
+        localeInfo.pathToFile = null;
+        sortedLanguages.add(localeInfo);
+        languagesDict.put(localeInfo.shortName, localeInfo);
+
+        localeInfo = new LocaleInfo();
+        localeInfo.name = "فارسی";
+        localeInfo.nameEnglish = "Farsi";
+        localeInfo.shortName = "fa";
         localeInfo.pathToFile = null;
         sortedLanguages.add(localeInfo);
         languagesDict.put(localeInfo.shortName, localeInfo);
@@ -1705,4 +1714,24 @@ public class LocaleController {
             }
         }
     }
+
+    private class PluralRules_Persian extends PluralRules
+    {
+
+        public int quantityForNumber(int i)
+        {
+            int j = i % 100;
+            if (i == 0)
+                return 1;
+            if (i == 1)
+                return 2;
+            if (i == 2)
+                return 4;
+            if (j >= 3 && j <= 10)
+                return 8;
+            return j < 11 || j > 99 ? 0 : 16;
+        }
+
+    }
+
 }
